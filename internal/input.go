@@ -2,7 +2,7 @@ package internal
 
 import "fmt"
 
-func getInput() (float64, float64, string) {
+func GetInput() (float64, float64, string) {
 	var a, b float64
 	var operation string
 

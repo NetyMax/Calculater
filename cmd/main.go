@@ -2,28 +2,30 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/Max/Calculation/Calculater/internal"
 )
 
 func main() {
 
-	a, b, operation := internal.getInput()
+	a, b, operation := internal.GetInput()
 
 	var result float64
 	switch operation {
 	case "+":
-		result = addition(a, b)
+		result = internal.Addition(a, b)
 
 	case "-":
-		result = subtraction(a, b)
+		result = internal.Subtraction(a, b)
 
 	case "*":
-		result = multiplication(a, b)
+		result = internal.Multiplication(a, b)
 
 	case "/":
-		result = division(a, b)
+		result = internal.Division(a, b)
 	default:
 		fmt.Println("не известный оператор")
 		return
 	}
-	fmt.Printf("результат: %.2f/n", result)
+	fmt.Printf("результат: %.2f \n", result)
 }
