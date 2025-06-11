@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com\Max\Calculation\internal"
 )
 
 func main() {
-	a, b, operation := getInput()
+
+	a, b, operation := internal.getInput()
 
 	var result float64
 	switch operation {
