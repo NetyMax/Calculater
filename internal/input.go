@@ -18,3 +18,5 @@ func GetInput() (float64, float64, string) {
 	return a, b, operation
 
 }
+
+// end
