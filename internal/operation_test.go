@@ -55,3 +55,5 @@ func TestDevisionByZero(t *testing.T) {
 		t.Errorf("Devision(5,0): ожидалось %.2f, получилось %.2f", expected, result)
 	}
 }
+
+// end
