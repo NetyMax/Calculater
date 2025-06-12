@@ -16,9 +16,8 @@ func Multiplication(a, b float64) float64 {
 
 func Division(a, b float64) float64 {
 	if b == 0 {
-		fmt.Println("на ноль делить нельзя")
+		fmt.Println("деление на ноль")
 		return 0
 	}
-
 	return a / b
 }
