@@ -38,22 +38,20 @@ func TestMultiplication(t *testing.T) {
 	}
 }
 
-func TestDevision(t *testing.T) {
+func TestDivision(t *testing.T) {
 	result := Division(8, 2)
 	expected := 4.0
 
 	if !floatsEqual(result, expected) {
-		t.Errorf("Devision(8,2): ожидалось %.2f, получилось %.2f", expected, result)
+		t.Errorf("Division(8,2): ожидалось %.2f, получилось %.2f", expected, result)
 	}
 }
 
 func TestDevisionByZero(t *testing.T) {
-	result := Division(0, 5)
+	result := Division(5, 0)
 	expected := 0.0
 
-	if result != expected {
-		t.Errorf("Devision(5,0): ожидалось %.2f, получилось %.2f", expected, result)
+	if !floatsEqual(result, expected) {
+		t.Errorf("Division(5,0): ожидалось %.2f, получилось %.2f", expected, result)
 	}
 }
-
-// end
