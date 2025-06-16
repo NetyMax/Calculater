@@ -47,7 +47,7 @@ func TestDivision(t *testing.T) {
 	}
 }
 
-func TestDevisionByZero(t *testing.T) {
+func TestDivisionByZero(t *testing.T) {
 	result := Division(5, 0)
 	expected := 0.0
 
