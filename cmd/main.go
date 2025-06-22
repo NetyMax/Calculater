@@ -3,16 +3,23 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/Max/Calculation/Calculater/internal"
 )
 
 func main() {
 
-	http.HandleFunc("/Addition", internal.CalcHandler)
+	go func() {
+		http.HandleFunc("/Addition", internal.CalcHandler)
+		fmt.Println("Сервер запущен на http://localhost:8080")
+		err := http.ListenAndServe(":8080", nil)
+		if err != nil {
+			fmt.Println("Ошибка запуска сервера:", err)
+		}
+	}()
 
-	fmt.Println("Сервер запущен на http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	time.Sleep(300 * time.Millisecond)
 
 	a, b, operation := internal.GetInput()
 
@@ -35,7 +42,5 @@ func main() {
 	}
 	fmt.Printf("результат: %.2f \n", result)
 
-	fmt.Println("Server running at http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
-
+	select {}
 }
