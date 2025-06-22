@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
-	"time"
 
 	"github.com/Max/Calculation/Calculater/internal"
 )
@@ -15,11 +15,9 @@ func main() {
 		fmt.Println("Сервер запущен на http://localhost:8080")
 		err := http.ListenAndServe(":8080", nil)
 		if err != nil {
-			fmt.Println("Ошибка запуска сервера:", err)
+			log.Fatalf("Error when server is power %v", err)
 		}
 	}()
-
-	time.Sleep(300 * time.Millisecond)
 
 	a, b, operation := internal.GetInput()
 
