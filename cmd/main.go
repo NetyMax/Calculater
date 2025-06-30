@@ -30,7 +30,7 @@ func main() {
 	case "/":
 		result = internal.Division(a, b)
 	default:
-		fmt.Println("не известный оператор")
+		fmt.Println("не известный оператор!")
 		return
 	}
 	fmt.Printf("результат: %.2f \n", result)
