@@ -33,6 +33,9 @@ func main() {
 		}(i)
 	}
 
+	wg.Wait()
+	close(results)
+
 	a, b, operation := internal.GetInput()
 
 	var result float64
