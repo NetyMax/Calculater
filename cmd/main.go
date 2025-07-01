@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sync"
 
 	"github.com/Max/Calculation/Calculater/internal"
 )
@@ -18,6 +19,19 @@ func main() {
 			log.Fatalf("Error when server is power %v", err)
 		}
 	}()
+
+	var wg sync.WaitGroup
+	results := make(chan string, 10)
+	for i := 1; i <= 10; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			a := float64(i)
+			b := float64(i * 2)
+			result := internal.Addition(a, b)
+			results <- fmt.Sprintf("Горутина %d: %.2f + %.2f = %.2f", i, a, b, result)
+		}(i)
+	}
 
 	a, b, operation := internal.GetInput()
 
