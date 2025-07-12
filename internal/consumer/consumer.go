@@ -8,7 +8,9 @@ import (
 
 func Start(taskChan <-chan task.Task) {
 	for t := range taskChan {
+
 		var result float64
+
 		switch t.Operator {
 		case "+":
 			result = t.A + t.B
