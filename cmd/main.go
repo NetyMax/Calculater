@@ -6,52 +6,18 @@ import (
 	"net/http"
 
 	"github.com/Max/Calculation/Calculater/internal"
+	"github.com/Max/Calculation/Calculater/internal/consumer"
+	"github.com/Max/Calculation/Calculater/internal/producer"
+	"github.com/Max/Calculation/Calculater/internal/task"
 )
-
-type Task struct {
-	A, B     float64
-	Operator string
-}
 
 func main() {
 
-	taskChan := make(chan Task)
+	taskChan := make(chan task.Task)
 
-	go func() {
+	go producer.Start(taskChan)
 
-		tasks := []Task{
-			{A: 5, B: 7, Operator: "+"},
-			{A: 8, B: 2, Operator: "-"},
-			{A: 2, B: 2, Operator: "*"},
-			{A: 4, B: 0, Operator: "/"},
-		}
-		for _, task := range tasks {
-			taskChan <- task
-		}
-		close(taskChan)
-	}()
-
-	go func() {
-		for task := range taskChan {
-			var result float64
-			switch task.Operator {
-			case "+":
-				result = task.A + task.B
-			case "-":
-				result = task.A - task.B
-			case "/":
-				if task.B == 0 {
-					fmt.Println("Ошибка: деление на ноль")
-					continue
-				}
-				result = task.A / task.B
-			default:
-				fmt.Println("Неизвестный оператор:", task.Operator)
-				continue
-			}
-			fmt.Printf("Операция: %.2f %s %.2f = %.2f\n", task.A, task.Operator, task.B, result)
-		}
-	}()
+	go consumer.Start(taskChan)
 
 	go func() {
 		http.HandleFunc("/Addition", internal.CalcHandler)
