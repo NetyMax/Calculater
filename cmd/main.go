@@ -6,9 +6,18 @@ import (
 	"net/http"
 
 	"github.com/Max/Calculation/Calculater/internal"
+	"github.com/Max/Calculation/Calculater/internal/consumer"
+	"github.com/Max/Calculation/Calculater/internal/producer"
+	"github.com/Max/Calculation/Calculater/internal/task"
 )
 
 func main() {
+
+	taskChan := make(chan task.Task)
+
+	go producer.Start(taskChan)
+
+	go consumer.Start(taskChan)
 
 	go func() {
 		http.HandleFunc("/Addition", internal.CalcHandler)
@@ -35,7 +44,7 @@ func main() {
 	case "/":
 		result = internal.Division(a, b)
 	default:
-		fmt.Println("не известный оператор")
+		fmt.Println("не известный оператор!")
 		return
 	}
 	fmt.Printf("результат: %.2f \n", result)
