@@ -14,7 +14,6 @@ import (
 func captureOutput(f func()) string {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
-
 	os.Stdout = w
 
 	f()
@@ -45,7 +44,7 @@ func TestStart(t *testing.T) {
 		substr string
 	}{
 		{substr: "Операция: 5.00 + 3.00 = 8.00"},
-		{substr: "Операция: 10.00 - 5.00 = 5.00"},
+		{substr: "Операция: 10.00 - 4.00 = 6.00"},
 		{substr: "Операция: 9.00 / 3.00 = 3.00"},
 		{substr: "Ошибка: деление на ноль"},
 		{substr: "Неизвестный оператор"},
