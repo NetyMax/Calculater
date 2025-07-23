@@ -34,6 +34,7 @@ func TestStart(t *testing.T) {
 		ch <- task.Task{A: 9, B: 3, Operator: "/"}
 		ch <- task.Task{A: 8, B: 0, Operator: "/"}
 		ch <- task.Task{A: 2, B: 2, Operator: "%"}
+		close(ch)
 
 	}()
 
