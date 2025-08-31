@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/Max/Calculation/Calculater/models"
+	"github.com/Max/Calculation/Calculater/internal/models"
 )
 
 func CalcHandler(w http.ResponseWriter, r *http.Request) {
